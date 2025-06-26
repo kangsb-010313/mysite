@@ -15,8 +15,9 @@ public class UserRepository {
 	public int userInsert(UserVO userVO) {
 		
 		System.out.println("UserRepository.userInsert()");
-		
+		System.out.println("------------------------");
 		int count = sqlSession.insert("mysite.insert", userVO);
+		System.out.println("------------------------");
 		
 		return count;
 		
