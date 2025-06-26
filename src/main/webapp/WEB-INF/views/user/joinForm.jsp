@@ -71,26 +71,26 @@
 
                     <div id="user-joinform">
                         
-                        <form class="form-box" action="" method="">
+                        <form class="form-box" action="${pageContext.request.contextPath}/user/joinok" method="get">
                             <div class="info-row">
                                 <label class="info-title" for="txt-idcheck">아이디</label>
-                                <input id="txt-idcheck" type="text" name="" value="">
+                                <input id="txt-idcheck" type="text" name="id" value="">
                                 <button id="" class="btn btn-gray btn-input"  type="button">중복체크</button>
                             </div>
                             <div class="info-row">
                                 <label class="info-title" for="txt-pwd">패스워드</label>
-                                <input id="txt-pwd" type="password" name="" value="">
+                                <input id="txt-pwd" type="password" name="password" value="">
                             </div>
                             <div class="info-row">
                                 <label class="info-title" for="txt-name">이름</label>
-                                <input id="txt-name" type="text" name="" value="">
+                                <input id="txt-name" type="text" name="name" value="">
                             </div>
                             <div class="info-row">
                                 <span class="info-title">성별</span>
                                 <label>남</label>
-                                <input type="radio">
+                                <input type="radio" name="gender" value="남">
                                 <label>여</label>
-                                <input type="radio">
+                                <input type="radio" name="gender" value="여">
                             </div>
                             <div class="info-row">
                                 <span class="info-title">약관동의</span>
