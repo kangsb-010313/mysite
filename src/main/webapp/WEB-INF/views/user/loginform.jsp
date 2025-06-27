@@ -71,14 +71,14 @@
 
                     <div id="user-loginform">
                             
-                        <form class="form-box" action="" method="">
+                        <form class="form-box" action="${pageContext.request.contextPath}/user/login" method="get">
                             <div class="info-row">
                                 <label class="info-title" for="txt-idcheck">아이디</label>
-                                <input id="txt-idcheck" type="text" name="" value="">
+                                <input id="txt-idcheck" type="text" name="id" value="">
                             </div>
                             <div class="info-row">
                                 <label class="info-title" for="txt-pwd">패스워드</label>
-                                <input id="txt-pwd" type="password" name="" value="">
+                                <input id="txt-pwd" type="password" name="password" value="">
                             </div>
                             <div class="btn-group">
                                 <button class="btn btn-blue btn-lg" type="submit">로그인</button>

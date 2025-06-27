@@ -60,7 +60,7 @@ public class UserController {
 	public String login(@ModelAttribute UserVO userVO) {
 		System.out.println("UserController.login()");
 		
-		
+		userService.exeLogin(userVO);
 	
 		return "";
 	}

@@ -25,5 +25,14 @@ public class UserService {
 		return count;
 		
 	}
+	
+	//로그인
+	public void exeLogin(UserVO userVO) {
+		
+		System.out.println("UserService.exeLogin()");
+		
+		userRepository.userSelectOneByIdPw(userVO);
+		
+	}
 
 }
