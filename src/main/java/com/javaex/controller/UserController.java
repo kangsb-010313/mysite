@@ -17,7 +17,7 @@ public class UserController {
 	private UserService userService;
 
 	//메소드일반
-	//회원가입폼
+	//--회원가입폼
 	@RequestMapping(value="/user/joinform", method= {RequestMethod.GET, RequestMethod.POST})
 	public String joinForm() {
 		System.out.println("UserController.joinForm()");
@@ -26,10 +26,10 @@ public class UserController {
 		
 	}
 	
-	//회원가입
-	@RequestMapping(value="/user/joinok", method= {RequestMethod.GET, RequestMethod.POST})
-	public String joinOk(@ModelAttribute UserVO userVO) {
-		System.out.println("UserController.joinOk()");
+	//--회원가입
+	@RequestMapping(value="/user/join", method= {RequestMethod.GET, RequestMethod.POST})
+	public String join(@ModelAttribute UserVO userVO) {
+		System.out.println("UserController.join()");
 		
 		userService.exeJoin(userVO);
 		

@@ -71,7 +71,7 @@
 
                     <div id="user-joinform">
                         
-                        <form class="form-box" action="${pageContext.request.contextPath}/user/joinok" method="get">
+                        <form class="form-box" action="${pageContext.request.contextPath}/user/join" method="get">
                             <div class="info-row">
                                 <label class="info-title" for="txt-idcheck">아이디</label>
                                 <input id="txt-idcheck" type="text" name="id" value="">
@@ -88,9 +88,9 @@
                             <div class="info-row">
                                 <span class="info-title">성별</span>
                                 <label>남</label>
-                                <input type="radio" name="gender" value="남">
+                                <input type="radio" name="gender" value="male">
                                 <label>여</label>
-                                <input type="radio" name="gender" value="여">
+                                <input type="radio" name="gender" value="female">
                             </div>
                             <div class="info-row">
                                 <span class="info-title">약관동의</span>
