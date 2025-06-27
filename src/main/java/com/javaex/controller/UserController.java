@@ -1,5 +1,7 @@
 package com.javaex.controller;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.javaex.service.UserService;
 import com.javaex.vo.UserVO;
+
+import jakarta.servlet.http.HttpSession;
+
+
 
 @Controller
 public class UserController {
@@ -57,13 +63,33 @@ public class UserController {
 	
 	//--로그인
 	@RequestMapping(value="/user/login", method= {RequestMethod.GET, RequestMethod.POST})
-	public String login(@ModelAttribute UserVO userVO) {
+	public String login(@ModelAttribute UserVO userVO, HttpSession session) {
 		System.out.println("UserController.login()");
 		
-		userService.exeLogin(userVO);
+		UserVO authUser = userService.exeLogin(userVO);
+		System.out.println(authUser);
+		
+		//세션에 확인용 값을 넣어준다 --> 로그인
+		session.setAttribute("authUser", authUser);
 	
-		return "";
+		return "redirect:/";
 	}
+	
+	
+	//--로그아웃
+	@RequestMapping(value="/user/logout", method= {RequestMethod.GET, RequestMethod.POST})
+	public String logout(HttpSession session) {
+		System.out.println("UserController.logout()");
+		
+		//세션의 확인용 값을 지운다
+		//session.removeAttribute("authUser");
+		session.invalidate();
+		
+		return "redirect:/";
+		
+		
+	}
+	
 	
 	
 	

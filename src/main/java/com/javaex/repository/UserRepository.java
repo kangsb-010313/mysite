@@ -28,16 +28,16 @@ public class UserRepository {
 	
 	
 	//--user정보 가져오기 (id password)s
-	public void userSelectOneByIdPw(UserVO userVO) {
+	public UserVO userSelectOneByIdPw(UserVO userVO) {
 		
 		System.out.println("UserRepository.userSelectOneByIdPw()");
 	
-		System.out.println(userVO); //id, pw --> 0x999
+		//System.out.println(userVO); //id, pw --> 0x999
 		
 		UserVO authUser = sqlSession.selectOne("user.selectOneByIdPw", userVO); //다 들어있음 (정보) --> 0x567
-		System.out.println(authUser); 
+		//System.out.println(authUser); 
 		
-		
+		return authUser;
 	}
 
 }

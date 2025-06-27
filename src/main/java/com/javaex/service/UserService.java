@@ -27,12 +27,13 @@ public class UserService {
 	}
 	
 	//로그인
-	public void exeLogin(UserVO userVO) {
+	public UserVO exeLogin(UserVO userVO) {
 		
 		System.out.println("UserService.exeLogin()");
 		
-		userRepository.userSelectOneByIdPw(userVO);
+		UserVO authUser = userRepository.userSelectOneByIdPw(userVO);
 		
+		return authUser;
 	}
 
 }
