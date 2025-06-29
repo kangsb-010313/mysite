@@ -19,7 +19,7 @@ public class GuestbookRepository {
 	public List<GuestbookVO> guestbookSelect(){
 		
 		System.out.println("GuestbookRepository.guestbookSelect()");
-
+		
 		List<GuestbookVO> guestbookList = sqlSession.selectList("guestbook.selectList");
 
 		return guestbookList;
