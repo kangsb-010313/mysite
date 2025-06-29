@@ -4,7 +4,7 @@
 <header class="clearfix">
 
 	<h1>
-		<a href="">MySite</a>
+		<a href="${pageContext.request.contextPath}/">MySite</a>
 	</h1>
 
 	<!-- 로그인 되었을 때(세션에 값이 있을 때) -->
@@ -15,7 +15,7 @@
                <a class="btn btn-white btn-sm" href="${pageContext.request.contextPath}/user/logout">로그아웃</a>
            	</li>
        	  	<li>
-               <a class="btn btn-white btn-sm" href="">정보수정</a>
+               <a class="btn btn-white btn-sm" href="${pageContext.request.contextPath}/user/editform">정보수정</a>
            	</li>
 	    </ul>
 	</c:if>
@@ -39,6 +39,6 @@
 		<li><a href="">입사지원서</a></li>
 		<li><a href="">게시판</a></li>
 		<li><a href="">갤러리</a></li>
-		<li><a href="">방명록</a></li>
+		<li><a href="${pageContext.request.contextPath}/guestbook/list">방명록</a></li>
 	</ul>
 </nav>

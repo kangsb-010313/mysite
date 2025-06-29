@@ -5,6 +5,7 @@ package com.javaex.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -91,12 +92,15 @@ public class UserController {
 	}
 	
 	//--회원정보수정 폼
+	
 	@RequestMapping(value="/user/editform", method = {RequestMethod.GET, RequestMethod.POST})
-	public String editForm() {
+	public String editForm(@ModelAttribute(value="id") String id, Model model) {
 		
 		System.out.println("UserController.editForm()");
 		
 		return "user/editform";
 	}
+	
+	
 	
 }

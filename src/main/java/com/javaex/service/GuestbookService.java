@@ -24,6 +24,22 @@ public class GuestbookService {
 		return guestbookList;
 	}
 	
+	//방명록 글 저장하기
+	public int exeAdd(GuestbookVO guestbookVO) {
+		System.out.println("GuestbookService.exeAdd()");
+		
+		int count = guestbookRepository.guestbookInsert(guestbookVO);
+		
+		return count;
+	}
 	
+	//방명록 글 삭제하기
+	public int exeRemove(GuestbookVO guestbookVO) {
+		System.out.println("GuestbookService.exeRemove()");
+		
+		int count = guestbookRepository.guestbookDelete(guestbookVO);
+		
+		return count;
+	}
 
 }

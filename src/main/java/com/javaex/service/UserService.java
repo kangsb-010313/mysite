@@ -35,5 +35,8 @@ public class UserService {
 		
 		return authUser;
 	}
+	
+	//회원정보 수정
+
 
 }

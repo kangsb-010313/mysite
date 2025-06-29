@@ -14,39 +14,9 @@
 
 	<body>
 		  <div class="wrap">
-            <header class="clearfix">
-                <h1><a href="">MySite</a></h1>
-              
-                <!--
-			    <ul class="clearfix">
-				    <li><span class="user-welcome">황일영 님 안녕하세요^^</span></li>
-				    <li>
-                        <a class="btn btn-white btn-sm" href="">로그아웃</a>
-                    </li>
-                    <li>
-                        <a class="btn btn-white btn-sm" href="">정보수정</a>
-                    </li>
-			    </ul>
-                -->
-                 	
-               <ul class="clearfix">
-                    <li>
-                        <a class="btn btn-white btn-sm" href="">로그인</a>
-                    </li>
-                    <li>
-                        <a class="btn btn-white btn-sm" href="">회원가입</a>
-                    </li>
-                </ul>
-            </header>
-
- 			<nav>
-                <ul class="clearfix">
-                    <li><a href="">입사지원서</a></li>
-                    <li><a href="">게시판</a></li>
-                    <li><a href="">갤러리</a></li>
-                    <li><a href="">방명록</a></li>
-                </ul>
-            </nav>
+			<!-- 헤더 + 네비 ---------------------------------------------->
+			<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
+			<!-- 헤더 ---------------------------------------------->
 		
             <div class="content2 clearfix">
                 <aside>
@@ -69,7 +39,7 @@
                     </div>
 
 					<div id="guestbook-addlist">
-						<form class="form-box" action="" method="">
+						<form class="form-box" action="${pageContext.request.contextPath}/guestbook/add" method="get">
 							<table>
 								<colgroup>
 									<col style="width: 70px;">
@@ -121,7 +91,7 @@
 										<td>${guestbookVO.name}</td>
 										<td>${guestbookVO.regDate}</td>
 										<td class="txt-center">
-											<a class="btn btn-gray btn-sm" href="">삭제</a>
+											<a class="btn btn-gray btn-sm" href="${pageContext.request.contextPath}/guestbook/removeform?no=${guestbookVO.no}">삭제</a>
 										</td>
 									</tr>
 									<tr>
@@ -135,11 +105,9 @@
                 </main>
             </div>
             
-            <footer>
-                <p>
-                    Copyright ⓒ 2025 황일영. All right reserved  
-                </p>
-            </footer>
+			<!-- 푸터 ------------------------------------------>
+			<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>	
+			<!-- 푸터 ------------------------------------------>
 
         </div>
      

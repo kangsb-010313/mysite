@@ -26,4 +26,24 @@ public class GuestbookRepository {
 	}
 	
 
+	//방명록 글 저장하기
+	public int guestbookInsert(GuestbookVO guestbookVO) {
+		System.out.println("GuestbookRepository.guestbookInsert()");
+		
+		int count = sqlSession.insert("guestbook.insert", guestbookVO);
+		
+		return count;
+	}
+	
+	//방명록 글 삭제하기
+	public int guestbookDelete(GuestbookVO guestbookVO) {
+		System.out.println("GuestbookRepository.guestbookDelete()");
+		
+		int count = sqlSession.delete("guestbook.delete", guestbookVO);
+		
+		return count;
+		
+		
+	}
+	
 }
