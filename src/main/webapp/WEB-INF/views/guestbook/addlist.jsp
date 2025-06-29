@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html lang="ko">
     <head>
@@ -79,7 +81,7 @@
 									<tr>
 										<th>
 											<label for="txt-name">이름</label>
-										</td>
+										</th>
 										<td>
 											<input id="txt-name" type="text" name="name" value="">
 										</td>
@@ -105,72 +107,29 @@
 							</table>
 						</form>	
 						
-						<table class="guestbook-item">
-							<colgroup>
-								<col style="width: 10%;">
-								<col style="width: 40%;">
-								<col style="width: 40%;">
-								<col style="width: 10%;">
-							</colgroup>
-							<tbody>
-								<tr>
-									<td>1234555</td>
-									<td>이정재</td>
-									<td>2020-03-03 12:12:12</td>
-									<td class="txt-center">
-										<a class="btn btn-gray btn-sm" href="">삭제</a>
-									</td>
-								</tr>
-								<tr>
-									<td colspan=4>방명록 글입니다. 방명록 글입니다.</td>
-								</tr>
-							</tbody>
-						</table>
-						
-						<table class="guestbook-item">
-							<colgroup>
-								<col style="width: 10%;">
-								<col style="width: 40%;">
-								<col style="width: 40%;">
-								<col style="width: 10%;">
-							</colgroup>
-							<tbody>
-								<tr>
-									<td>1234555</td>
-									<td>이정재</td>
-									<td>2020-03-03 12:12:12</td>
-									<td class="txt-center">
-										<a class="btn btn-gray btn-sm" href="">삭제</a>
-									</td>
-								</tr>
-								<tr>
-									<td colspan=4>방명록 글입니다. 방명록 글입니다.</td>
-								</tr>
-							</tbody>
-						</table>
-
-						<table class="guestbook-item">
-							<colgroup>
-								<col style="width: 10%;">
-								<col style="width: 40%;">
-								<col style="width: 40%;">
-								<col style="width: 10%;">
-							</colgroup>
-							<tbody>
-								<tr>
-									<td>1234555</td>
-									<td>이정재</td>
-									<td>2020-03-03 12:12:12</td>
-									<td class="txt-center">
-										<a class="btn btn-gray btn-sm" href="">삭제</a>
-									</td>
-								</tr>
-								<tr>
-									<td colspan=4>방명록 글입니다. 방명록 글입니다.</td>
-								</tr>
-							</tbody>
-						</table>
-						
+						<c:forEach items="${requestScope.gList}" var="guestbookVO">
+							<table class="guestbook-item">
+								<colgroup>
+									<col style="width: 10%;">
+									<col style="width: 40%;">
+									<col style="width: 40%;">
+									<col style="width: 10%;">
+								</colgroup>
+								<tbody>
+									<tr>
+										<td>${guestbookVO.no}</td>
+										<td>${guestbookVO.name}</td>
+										<td>${guestbookVO.regDate}</td>
+										<td class="txt-center">
+											<a class="btn btn-gray btn-sm" href="">삭제</a>
+										</td>
+									</tr>
+									<tr>
+										<td colspan=4>${guestbookVO.content}</td>
+									</tr>
+								</tbody>
+							</table>
+						</c:forEach>
 					</div>
 			    
                 </main>

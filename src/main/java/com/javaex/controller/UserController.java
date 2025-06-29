@@ -90,5 +90,13 @@ public class UserController {
 		
 	}
 	
+	//--회원정보수정 폼
+	@RequestMapping(value="/user/editform", method = {RequestMethod.GET, RequestMethod.POST})
+	public String editForm() {
+		
+		System.out.println("UserController.editForm()");
+		
+		return "user/editform";
+	}
 	
 }
