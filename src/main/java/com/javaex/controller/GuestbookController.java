@@ -47,7 +47,7 @@ public class GuestbookController {
 	public String removeForm() {
 		System.out.println("GuestbookController.removeForm()");
 		
-		return "guestbook/removeform";
+		return "guestbook/removeForm";
 	}
 	
 	//-- 삭제
