@@ -8,20 +8,20 @@ public class BoardVO {
 	private String content;
 	private int hit;
 	private String regDate;
-	private int userNO;
+	private int userNo;
 	private String userName;
 	
 	
 	//생성자
 	public BoardVO() {
 	}
-	public BoardVO(int no, String title, String content, int hit, String regDate, int userNO, String userName) {
+	public BoardVO(int no, String title, String content, int hit, String regDate, int userNo, String userName) {
 		this.no = no;
 		this.title = title;
 		this.content = content;
 		this.hit = hit;
 		this.regDate = regDate;
-		this.userNO = userNO;
+		this.userNo = userNo;
 		this.userName = userName;
 	}
 	
@@ -57,11 +57,11 @@ public class BoardVO {
 	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
-	public int getUserNO() {
-		return userNO;
+	public int getUserNo() {
+		return userNo;
 	}
-	public void setUserNO(int userNO) {
-		this.userNO = userNO;
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
 	}
 	public String getUserName() {
 		return userName;
@@ -75,7 +75,7 @@ public class BoardVO {
 	@Override
 	public String toString() {
 		return "BoardVO [no=" + no + ", title=" + title + ", content=" + content + ", hit=" + hit + ", regDate="
-				+ regDate + ", userNO=" + userNO + ", userName=" + userName + "]";
+				+ regDate + ", userNO=" + userNo + ", userName=" + userName + "]";
 	}
 	
 	

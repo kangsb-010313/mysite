@@ -26,7 +26,7 @@ public class BoardService {
 		return boardList;
 	}
 	
-	// 글쓰기 폼
+	// 글쓰기
 	public int exeAdd(BoardVO boardVO) {
 		System.out.println("BoardService.exeAdd");
 		
@@ -35,5 +35,4 @@ public class BoardService {
 		return count;
 	}
 	
-
 }

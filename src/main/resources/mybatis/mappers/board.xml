@@ -19,10 +19,10 @@
 	</select>
 	
 	<!-- 게시판 글쓰기 등록 -->
-	<insert id="insert">
+	<insert id="insert" parameterType="com.javaex.vo.BoardVO">
 		<![CDATA[
-			insert into board(title, content)
-			values(#{title}, #{content})
+			insert into board
+			values(null, #{userNo}, #{title}, #{content}, #{hit}, now())
 		]]>
 	</insert>
 

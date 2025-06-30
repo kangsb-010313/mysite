@@ -52,34 +52,28 @@ public class BoardController {
 		return "board/writeForm";
 	}
 
-
+	
 	
 	//-- 글쓰기
-	@RequestMapping(value="/add", method= {RequestMethod.GET, RequestMethod.POST})
-	public String add(BoardVO boardVO, HttpSession session){
-		System.out.println("BoardController.add()");
+	@RequestMapping(value="/write", method= {RequestMethod.GET, RequestMethod.POST})
+	public String write(BoardVO boardVO, HttpSession session){
+		System.out.println("BoardController.write()");
 		
 		UserVO authUser = (UserVO)session.getAttribute("authUser");
 		
+		if(authUser==null) {
+			return "redirect:/user/loginform";
+		}
+		
 		int no = authUser.getNo();
 		
-		boardVO.setUserNO(no);
+		boardVO.setUserNo(no);
 		
 		boardService.exeAdd(boardVO);
 		
-		return "";
+		return "redirect:/board/list";
 	}
-	/*
-    public String add(BoardVO boardVo, HttpSession session) {
-        UserVO authUser = (UserVO)session.getAttribute("authUser");
-        if(authUser == null) {
-            return "redirect:/user/login";
-        }
-        boardVo.setUserNo(authUser.getNo()); // 세션에서 userNo 꺼내서 저장
-        boardService.exeAdd(boardVo);
-        return "redirect:/board/list"; // 글 목록으로 이동
-    }
-	*/
+
 	//-- 수정폼
 	
 	//-- 수정
