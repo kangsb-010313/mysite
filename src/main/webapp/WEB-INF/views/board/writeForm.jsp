@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
 <html lang="ko">
     <head>
         <meta charset="UTF-8">
@@ -52,9 +55,8 @@
                     </ul>
                 </aside>
 
-
-				<main>
-					<div class="main-head clearfix">
+                <main>
+                    <div class="main-head clearfix">
                         <h3>일반게시판</h3>
                         <ol class="clearfix">
                             <li>홈</li>
@@ -62,56 +64,32 @@
                             <li>일반게시판</li>
                         </ol>
                     </div>
-
-	
-					<div id="board-read">
-
-						<!-- 작성자 -->
-						<div class="info-row">
-							<span class="info-title">작성자</span>
-							<span>정우성</span>
-						</div>
-						
-						<!-- 조회수 -->
-						<div class="info-row">
-							<span class="info-title">조회수</span>
-							<span>123</span>
-						</div>
-						
-						<!-- 작성일 -->
-						<div class="info-row">
-							<span class="info-title">작성일</span>
-							<span>2020-03-02</span>
-						</div>
-						
-						<!-- 제목 -->
-						<div class="info-row">
-							<span class="info-title">제 목</span>
-							<span>여기에는 글제목이 출력됩니다.</span>
-						</div>
-					
-						<!-- 내용 -->
-						<div class="info-row">
-							<div class="outline" >
-								여기에는 본문내용이 출력됩니다.<br>
-								여기에는 본문내용이 출력됩니다.<br>
-								여기에는 본문내용이 출력됩니다.<br>
-								여기에는 본문내용이 출력됩니다.<br>
-								여기에는 본문내용이 출력됩니다.<br>
-								여기에는 본문내용이 출력됩니다.<br>
-								여기에는 본문내용이 출력됩니다.<br>
-								여기에는 본문내용이 출력됩니다.<br>
+                    
+                    <div id="board-writeform">
+                
+                        <form class="form-box" action="#" method="get">
+							<!-- 제목 -->
+							<div class="info-row">
+								<label class="info-title" for="txt-title">제&nbsp;&nbsp;&nbsp;목</label>
+								<input type="text" id="txt-title" name="" value="" placeholder="제목을 입력해 주세요">
 							</div>
-						</div>
 						
-						<div class="btn-box">
-							<a class="btn btn-gray btn-md" href="">목록</a>
-							<a class="btn btn-blue btn-md" href="">수정</a>
-						</div>
-						
-					</div>
+							<!-- 내용 -->
+							<div class="info-row">
+								<textarea id="txt-content"></textarea>
+							</div>
+							
+                            <div class="btn-box">
+							    <a class="btn btn-gray btn-md" href="">목록</a>
+							    <button class="btn btn-blue btn-md" type="submit" >등록</button>
+							</div>
+						</form>
+						<!-- //form -->
 
-				 </main>
+                    </div>
+
+                    
+                </main>
             </div>
             
             <footer>
