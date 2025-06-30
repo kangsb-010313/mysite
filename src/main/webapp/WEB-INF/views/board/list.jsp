@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 
@@ -6,46 +7,16 @@
     <head>
         <meta charset="UTF-8">
         <title>MySite</title>
-        <link rel="stylesheet" href="../../assets/css/reset.css">
-        <link rel="stylesheet" href="../../assets/css/mysite.css">
-        <link rel="stylesheet" href="../../assets/css/board.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/reset.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/mysite.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/board.css">
     </head>
 
     <body>
       <div class="wrap">
-            <header class="clearfix">
-                <h1><a href="">MySite</a></h1>
-              
-                <!--
-			    <ul class="clearfix">
-				    <li><span class="user-welcome">황일영 님 안녕하세요^^</span></li>
-				    <li>
-                        <a class="btn btn-white btn-sm" href="">로그아웃</a>
-                    </li>
-                    <li>
-                        <a class="btn btn-white btn-sm" href="">정보수정</a>
-                    </li>
-			    </ul>
-                -->
-                 	
-               <ul class="clearfix">
-                    <li>
-                        <a class="btn btn-white btn-sm" href="">로그인</a>
-                    </li>
-                    <li>
-                        <a class="btn btn-white btn-sm" href="">회원가입</a>
-                    </li>
-                </ul>
-            </header>
-
-            <nav>
-                <ul class="clearfix">
-                    <li><a href="">입사지원서</a></li>
-                    <li><a href="">게시판</a></li>
-                    <li><a href="">갤러리</a></li>
-                    <li><a href="">방명록</a></li>
-                </ul>
-            </nav>
+			<!-- 헤더 + 네비 ---------------------------------------------->
+			<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
+			<!-- 헤더 ---------------------------------------------->
 
             <div class="content2 clearfix">
                 <aside>
@@ -91,66 +62,21 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>123</td>
-									<td class="txt-left"><a href="#">게시판 게시글입니다.</a></td>
-									<td>정우성</td>
-									<td>1232</td>
-									<td>2020-12-23</td>
+							
+								<!-- 반복 -->
+								<c:forEach items="${requestScope.boardList}" var="boardVO">
+									<tr>
+										<td>${boardVO.no}</td>
+										<td class="txt-left"><a href="#">${boardVO.title}</a></td>
+										<td>${boardVO.userName}</td>
+										<td>${boardVO.hit}</td>
+										<td>${boardVO.regDate}</td>
 									<td>
                                         <button class="btn btn-white btn-sm" type="button">삭제</button>
                                     </td>
 								</tr>
-								<tr>
-									<td>123</td>
-									<td class="txt-left"><a href="#">게시판 게시글입니다.</a></td>
-									<td>정우성</td>
-									<td>1232</td>
-									<td>2020-12-23</td>
-									<td>
-                                        <button class="btn btn-white btn-sm" type="button">삭제</button>
-                                    </td>
-								</tr>
-								<tr>
-									<td>123</td>
-									<td class="txt-left"><a href="#">게시판 게시글입니다.</a></td>
-									<td>정우성</td>
-									<td>1232</td>
-									<td>2020-12-23</td>
-									<td>
-                                        <button class="btn btn-white btn-sm" type="button">삭제</button>
-                                    </td>
-								</tr>
-								<tr>
-									<td>123</td>
-									<td class="txt-left"><a href="#">게시판 게시글입니다.</a></td>
-									<td>정우성</td>
-									<td>1232</td>
-									<td>2020-12-23</td>
-									<td>
-                                        <button class="btn btn-white btn-sm" type="button">삭제</button>
-                                    </td>
-								</tr>
-								<tr>
-									<td>123</td>
-									<td class="txt-left"><a href="#">게시판 게시글입니다.</a></td>
-									<td>정우성</td>
-									<td>1232</td>
-									<td>2020-12-23</td>
-									<td>
-                                        <button class="btn btn-white btn-sm" type="button">삭제</button>
-                                    </td>
-								</tr>
-								<tr>
-									<td>123</td>
-									<td class="txt-left"><a href="#">게시판 게시글입니다.</a></td>
-									<td>정우성</td>
-									<td>1232</td>
-									<td>2020-12-23</td>
-									<td>
-                                        <button class="btn btn-white btn-sm" type="button">삭제</button>
-                                    </td>
-								</tr>	
+								</c:forEach>
+								
 							</tbody>
 						</table>
                         <div class="paging">
@@ -178,11 +104,9 @@
                 </main>
             </div>
             
-            <footer>
-                <p>
-                    Copyright ⓒ 2025 황일영. All right reserved  
-                </p>
-            </footer>
+			<!-- 푸터 ------------------------------------------>
+			<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>	
+			<!-- 푸터 ------------------------------------------>
 
         </div>
      
