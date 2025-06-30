@@ -17,6 +17,14 @@
 			where u.no = b.user_no
 		]]>
 	</select>
+	
+	<!-- 게시판 글쓰기 등록 -->
+	<insert id="insert">
+		<![CDATA[
+			insert into board(title, content)
+			values(#{title}, #{content})
+		]]>
+	</insert>
 
 	
 </mapper>

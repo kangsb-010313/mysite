@@ -25,5 +25,15 @@ public class BoardService {
 		
 		return boardList;
 	}
+	
+	// 글쓰기 폼
+	public int exeAdd(BoardVO boardVO) {
+		System.out.println("BoardService.exeAdd");
+		
+		int count = boardRepository.boardInsert(boardVO);
+		
+		return count;
+	}
+	
 
 }

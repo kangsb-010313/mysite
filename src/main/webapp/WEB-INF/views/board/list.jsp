@@ -71,10 +71,11 @@
 										<td>${boardVO.userName}</td>
 										<td>${boardVO.hit}</td>
 										<td>${boardVO.regDate}</td>
-									<td>
-                                        <button class="btn btn-white btn-sm" type="button">삭제</button>
-                                    </td>
-								</tr>
+										
+										<td>
+	                                        <button class="btn btn-white btn-sm" type="button">삭제</button>
+	                                    </td>
+									</tr>
 								</c:forEach>
 								
 							</tbody>
@@ -96,7 +97,7 @@
 							</ul>
 						</div>
                         <div class="btn-box">
-                            <a class="btn btn-blue btn-md" href="">글쓰기</a>
+                            <a class="btn btn-blue btn-md" href="${pageContext.request.contextPath}/board/writeform">글쓰기</a>
                         </div>
                     </div>
 

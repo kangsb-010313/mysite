@@ -25,5 +25,14 @@ public class BoardRepository {
 		
 		return boardList;
 	}
+	
+	//글쓰기 폼
+	public int boardInsert(BoardVO boardVO) {
+		System.out.println("BoardRepository.boardInsert");
+		
+		int count = sqlSession.insert("board.inssert", boardVO);
+		
+		return count;
+	}
 
 }
