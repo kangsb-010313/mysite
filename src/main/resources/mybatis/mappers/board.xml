@@ -44,11 +44,6 @@
 		]]>
 	</select>
 	
-	
-	
-	
-	
-	
 	<!-- 게시판 글쓰기 등록 -->
 	<insert id="insert" parameterType="com.javaex.vo.BoardVO">
 		<![CDATA[
@@ -56,6 +51,26 @@
 			values(null, #{userNo}, #{title}, #{content}, #{hit}, now())
 		]]>
 	</insert>
+	
+	<!-- 게시판 보기 -->
+	<select id="selectBoardContent" parameterType="int" resultType="com.javaex.vo.BoardVO">
+		<![CDATA[
+			select  u.name userName
+					,b.hit
+			        ,date_format(b.reg_date, "%Y-%m-%d")regDate
+			        ,b.title
+			        ,b.content
+			from users u, board b
+			where u.no = b.user_no
+			and b.no = #{no}
+		]]>
+	</select>
+
+
+
+
+
+
 
 	
 </mapper>

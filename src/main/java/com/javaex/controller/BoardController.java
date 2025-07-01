@@ -80,7 +80,7 @@ public class BoardController {
 		UserVO authUser = (UserVO)session.getAttribute("authUser");
 		
 		if(authUser==null) {
-			return "redirect:/user/loginform";
+			return "redirect:/user/loginform()";
 		}
 		
 		int no = authUser.getNo();
@@ -91,17 +91,48 @@ public class BoardController {
 		
 		return "redirect:/board/list2";
 	}
-
-	//-- 수정폼
-	@RequestMapping(value="/editform", method= {RequestMethod.GET, RequestMethod.POST})
-	public String editForm() {
-		System.out.println("BoardController.editForm()");
+	
+	//-- 게시판 글 보기
+	@RequestMapping(value="/read", method= {RequestMethod.GET, RequestMethod.POST})
+	public String read(@RequestParam("no") int no, Model model) {
+		System.out.println("BoardController.read()");
+		
+		BoardVO boardVO = boardService.exeRead(no);
+		
+		model.addAttribute("boardVO", boardVO);
+		
+		return "board/read";
+	}
+	
+	//-- 삭제
+	@RequestMapping(value="/remove", method= {RequestMethod.GET, RequestMethod.POST})
+	public String remove() {
+		System.out.println("BoardController.remove()");
 		
 		return "";
 	}
 	
-	//-- 수정
+
+	//-- 수정폼
+	@RequestMapping(value="/editform", method= {RequestMethod.GET, RequestMethod.POST})
+	public String editForm(@RequestParam("no") int no, Model model) {
+		System.out.println("BoardController.editForm()");
+		
+		BoardVO boardVO = boardService.exeRead(no);
+		
+		model.addAttribute("boardVO", boardVO);
+		
+		return "board/editForm";
+	}
 	
-	//-- 삭제
+	//-- 수정
+	@RequestMapping(value="/edit", method= {RequestMethod.GET, RequestMethod.POST})
+	public String edit() {
+		System.out.println("BoardController.edit()");
+		
+		return "";
+	}
+	
+
 
 }

@@ -43,44 +43,37 @@
 						<!-- 작성자 -->
 						<div class="info-row">
 							<span class="info-title">작성자</span>
-							<span>정우성</span>
+							<span>${boardVO.userName}</span>
 						</div>
 						
 						<!-- 조회수 -->
 						<div class="info-row">
 							<span class="info-title">조회수</span>
-							<span>123</span>
+							<span>${boardVO.hit}</span>
 						</div>
 						
 						<!-- 작성일 -->
 						<div class="info-row">
 							<span class="info-title">작성일</span>
-							<span>2020-03-02</span>
+							<span>${boardVO.regDate}</span>
 						</div>
 						
 						<!-- 제목 -->
 						<div class="info-row">
 							<span class="info-title">제 목</span>
-							<span>여기에는 글제목이 출력됩니다.</span>
+							<span>${boardVO.title}</span>
 						</div>
 					
 						<!-- 내용 -->
 						<div class="info-row">
 							<div class="outline" >
-								여기에는 본문내용이 출력됩니다.<br>
-								여기에는 본문내용이 출력됩니다.<br>
-								여기에는 본문내용이 출력됩니다.<br>
-								여기에는 본문내용이 출력됩니다.<br>
-								여기에는 본문내용이 출력됩니다.<br>
-								여기에는 본문내용이 출력됩니다.<br>
-								여기에는 본문내용이 출력됩니다.<br>
-								여기에는 본문내용이 출력됩니다.<br>
+								${boardVO.content}
 							</div>
 						</div>
 						
 						<div class="btn-box">
-							<a class="btn btn-gray btn-md" href="">목록</a>
-							<a class="btn btn-blue btn-md" href="">수정</a>
+							<a class="btn btn-gray btn-md" href="${pageContext.request.contextPath}/board/list2">목록</a>
+							<a class="btn btn-blue btn-md" href="${pageContext.request.contextPath}/board/editform?no=${boardVO.no}">수정</a>
 						</div>
 						
 					</div>

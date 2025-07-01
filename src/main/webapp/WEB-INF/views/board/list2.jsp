@@ -67,7 +67,9 @@
 								<c:forEach items="${requestScope.pMap.boardList}" var="boardVO">
 									<tr>
 										<td>${boardVO.no}</td>
-										<td class="txt-left"><a href="#">${boardVO.title}</a></td>
+										<td class="txt-left">
+											<a href="${pageContext.request.contextPath}/board/read?no=${boardVO.no}">${boardVO.title}</a>
+										</td>
 										<td>${boardVO.userName}</td>
 										<td>${boardVO.hit}</td>
 										<td>${boardVO.regDate}</td>

@@ -45,19 +45,23 @@ public class BoardRepository {
 		return totlaCount;
 	}
 	
-	
-	
-	
-	
-	
-	
 	//글쓰기 
 	public int boardInsert(BoardVO boardVO) {
-		System.out.println("BoardRepository.boardInsert");
+		System.out.println("BoardRepository.boardInsert()");
 		
 		int count = sqlSession.insert("board.insert", boardVO);
 		
 		return count;
 	}
+	
+	//게시판 글 보기
+	public BoardVO boardSelectOne(int no) {
+		System.out.println("BoardRepository.boardSelectOne");
+		
+		BoardVO boardVO = sqlSession.selectOne("board.selectBoardContent", no);
+		
+		return boardVO;
+	}
+
 
 }

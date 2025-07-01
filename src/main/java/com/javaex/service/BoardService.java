@@ -155,11 +155,21 @@ public class BoardService {
 	
 	// 글쓰기
 	public int exeAdd(BoardVO boardVO) {
-		System.out.println("BoardService.exeAdd");
+		System.out.println("c.exeAdd()");
 		
 		int count = boardRepository.boardInsert(boardVO);
 		
 		return count;
 	}
 	
+	//게시판 글 보기
+	public BoardVO exeRead(int no) {
+		System.out.println("BoardService.exeRead()");
+		
+		BoardVO boardVO = boardRepository.boardSelectOne(no);
+		
+		return boardVO;
+	}
+	
+
 }
