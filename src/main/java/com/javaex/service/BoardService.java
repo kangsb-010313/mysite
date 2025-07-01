@@ -6,16 +6,22 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import com.javaex.MysiteApplication;
 import com.javaex.repository.BoardRepository;
 import com.javaex.vo.BoardVO;
 
 @Service
 public class BoardService {
+
+    private final MysiteApplication mysiteApplication;
 	
 	//필드
 	@Autowired
 	private BoardRepository boardRepository;
+
+    BoardService(MysiteApplication mysiteApplication) {
+        this.mysiteApplication = mysiteApplication;
+    }
 	
 	//메소드 일반
 	
@@ -28,7 +34,7 @@ public class BoardService {
 		return boardList;
 	}
 	//-- 게시판 전체리스트2(페이징)
-	public List<BoardVO> exeList2(int crtPage) {
+	public Map<String, Object> exeList2(int crtPage) {
 		System.out.println("BoardService.exeList2()");
 		
 		System.out.println(crtPage);
@@ -52,9 +58,93 @@ public class BoardService {
 		limitMap.put("startRowNo", startRowNo);
 		limitMap.put("listCnt", listCnt);
 		
-		boardRepository.boardSelectList2(limitMap);
+		List<BoardVO> boardList = boardRepository.boardSelectList2(limitMap);
 		
-		return null;
+		////////////////////////////////////////////////////
+		/// 페이징버튼 (하단 버튼)
+		////////////////////////////////////////////////////
+		
+		//페이지당 버튼갯수
+		int pageBtnCount = 5;
+		
+		// 마지막 버튼 번호 endPageBtnNo
+		/*
+		 1 2 3 4 5 >
+		 
+		 1 -> (1, 5) 
+		 2 -> (1, 5)
+		 3 -> (1, 5)
+		 4 -> (1, 5)
+		 5 -> (1, 5)
+		 6 -> (6, 10)
+		 7 -> (6, 10)
+		 ...
+		 10 -> (6, 10)
+		 11 -> (11, 15)
+		 
+		 1--> 올림(1/5)5 --> 0.2(1)*5 -->5
+		 2--> 올림(2/5)5 --> 0.4(1)*5 -->5
+		 3--> 올림(3/5)5 --> 0.6(1)*5 -->5
+		 4--> 올림(4/5)5 --> 0.8(1)*5 -->5
+		 5--> 올림(5/5)5 --> 1.0(1)*5 -->5
+		 6--> 올림(6/5)5 --> 1.2(2)*5 -->10
+		 11--> 올림(11/5)5 --> 2.2(3)*5 -->15
+		 
+	 	페이지 마지막 버튼 번호 */
+		int endPageBtnNo = ((int)Math.ceil(crtPage/((double)pageBtnCount)))*pageBtnCount;
+	
+		//시작 버튼 번호 startPageBtnNo
+		int startPageBtnNo = (endPageBtnNo - pageBtnCount) + 1;
+		 
+		//다음 화살표 유무 next
+		/* 총 글 수와 연관이 있음, 한 페이지당 글 갯수
+	  
+	  	1)
+	  	전체 글 갯수 51
+	  	1 2 3 4 5 > true
+	  	한 페이지 당 글 갯수(10)*5 <	전체글갯수(51)	--> true
+	  
+	  	10*5 50 다음버튼 있어야 함
+	  
+	  	2)
+	  	전체글 갯수 49
+	  	1 2 3 4 5 (x)
+	  	한 페이지 당 글 갯수(10)*5 >	전체글갯수(49)	--> false
+	   
+	  	10*5 50 다음버튼 없어야 함
+	  	*/
+		
+		//-- 전체 글 갯수
+		int totalCount = boardRepository.selectTotalCount();
+		boolean next = false;
+		
+		if(listCnt*endPageBtnNo < totalCount) {//한 페이지 당 글 갯수(10)*마지막 버튼 번호(5) <	전체글갯수(51)
+			next = true;
+		}
+		
+		//이전 화살표 유무 prev
+		boolean prev = false;
+		if(startPageBtnNo != 1) {
+			prev = true;
+		}
+		
+		//모두 묶어서 컨트롤러에 리턴해준다 --> Map 사용
+		Map<String, Object> pMap = new HashMap<String, Object>();
+		pMap.put("boardList", boardList); //리스트
+		
+		pMap.put("prev", prev); //이전 버튼 유무
+		pMap.put("next", next); //다음 버튼 유무
+		pMap.put("startPageBtnNo", startPageBtnNo); // 시작버튼 번호
+		pMap.put("endPageBtnNo", endPageBtnNo); // 마지막버튼 번호
+
+		/*
+		 prev -> 이전 화살표 버튼
+		 next -> 다음 화살표 버튼
+		 pageBtnCount -> 페이지당 버튼 갯수
+		 startPageBtnNo -> 페이지 시작 버튼 번호
+		 endPageBtnNo -> 페이지 마지막 버튼 번호
+		 */
+		return pMap;
 	}
 	
 	// 글쓰기

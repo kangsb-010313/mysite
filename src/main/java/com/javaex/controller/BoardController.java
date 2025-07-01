@@ -1,6 +1,7 @@
 package com.javaex.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,13 +41,14 @@ public class BoardController {
 	
 	//-- 게시판 전체 리스트2(페이징)
 	@RequestMapping(value="/list2", method= {RequestMethod.GET, RequestMethod.POST})
-	public String list2(@RequestParam("crtpage") int crtPage) {
+	public String list2(@RequestParam("crtpage") int crtPage, Model model) {
 		System.out.println("BoardController.list2()");
 		
-		boardService.exeList2(crtPage);
-
+		Map<String, Object> pMap = boardService.exeList2(crtPage);
+		System.out.println(pMap);
+		//model.addAttribute("boardList", boardList);
 		
-		return "";
+		return "board/list2";
 	}
 	
 	
