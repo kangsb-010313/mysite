@@ -93,6 +93,12 @@ public class BoardController {
 	}
 
 	//-- 수정폼
+	@RequestMapping(value="/editform", method= {RequestMethod.GET, RequestMethod.POST})
+	public String editForm() {
+		System.out.println("BoardController.editForm()");
+		
+		return "";
+	}
 	
 	//-- 수정
 	
