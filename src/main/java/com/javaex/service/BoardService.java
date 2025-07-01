@@ -42,7 +42,7 @@ public class BoardService {
 		////////////////////////////////////////////////////
 		/// 리스트 가져오기
 		////////////////////////////////////////////////////
-		// 한 페이지의 출력 갯수
+		// 한 페이지의 출력 갯수(게시글)
 		int listCnt = 10;
 		
 		//시작 번호
@@ -116,10 +116,16 @@ public class BoardService {
 		
 		//-- 전체 글 갯수
 		int totalCount = boardRepository.selectTotalCount();
+		//다음 화살표 
 		boolean next = false;
 		
 		if(listCnt*endPageBtnNo < totalCount) {//한 페이지 당 글 갯수(10)*마지막 버튼 번호(5) <	전체글갯수(51)
 			next = true;
+		}else { //다음 화살표가 false일 때 마지막 버튼 번호를 다시 계산해야 한다
+			//185 --> 19page  185/10 (한 페이지 10개 씩) --> 18.5 --> 19 올림처리한다
+			
+			endPageBtnNo = (int)Math.ceil(totalCount/((double)listCnt));
+			
 		}
 		
 		//이전 화살표 유무 prev

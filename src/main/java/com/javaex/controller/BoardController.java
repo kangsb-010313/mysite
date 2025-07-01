@@ -41,12 +41,14 @@ public class BoardController {
 	
 	//-- 게시판 전체 리스트2(페이징)
 	@RequestMapping(value="/list2", method= {RequestMethod.GET, RequestMethod.POST})
-	public String list2(@RequestParam("crtpage") int crtPage, Model model) {
+	public String list2(@RequestParam(value="crtpage", required=false, defaultValue="1") int crtPage, 
+						Model model) {
 		System.out.println("BoardController.list2()");
 		
 		Map<String, Object> pMap = boardService.exeList2(crtPage);
+
+		model.addAttribute("pMap", pMap);
 		System.out.println(pMap);
-		//model.addAttribute("boardList", boardList);
 		
 		return "board/list2";
 	}
@@ -87,7 +89,7 @@ public class BoardController {
 		
 		boardService.exeAdd(boardVO);
 		
-		return "redirect:/board/list";
+		return "redirect:/board/list2";
 	}
 
 	//-- 수정폼
