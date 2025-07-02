@@ -262,10 +262,12 @@ public class BoardService {
 	}
 	
 	//게시판 글 수정
-	public int exeEdit() {
+	public int exeEdit(BoardVO boardVO) {
 		System.out.println("BoardService.exeEdit()");
 		
-		return 0;
+		int count = boardRepository.boardUpdate(boardVO);
+		
+		return count;
 	}
 	
 

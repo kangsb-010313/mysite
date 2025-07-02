@@ -91,10 +91,12 @@ public class BoardRepository {
 	}
 	
 	//게시판 글 수정
-	public int boardUpdate() {
+	public int boardUpdate(BoardVO boardVO) {
 		System.out.println("BoardRepository.boardUpdate");
 		
-		return 0;
+		int count = sqlSession.update("board.update", boardVO);
+		
+		return count;
 	}
 
 

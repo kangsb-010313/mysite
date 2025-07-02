@@ -109,12 +109,12 @@
 	</select>
 
 	<!-- 게시판 글 수정 -->
-	<update id="">
+	<update id="update" parameterType="com.javaex.vo.BoardVO">
 		<![CDATA[
 			update board
 			set title= #{title}
 				,content= #{content}
-			where no = ?
+			where no = #{no}
 		]]>
 	</update>
 

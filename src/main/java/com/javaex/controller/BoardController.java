@@ -115,7 +115,7 @@ public class BoardController {
 		
 		boardService.exeAdd(boardVO);
 		
-		return "redirect:/board/list2";
+		return "redirect:/board/list3";
 	}
 	
 	//-- 게시판 글 보기
@@ -150,9 +150,9 @@ public class BoardController {
 	public String edit(@ModelAttribute BoardVO boardVO) {
 		System.out.println("BoardController.edit()");
 		
-		boardService.exeEdit();
+		boardService.exeEdit(boardVO);
 		
-		return "";
+		return "redirect:/board/list3";
 	}
 	
 

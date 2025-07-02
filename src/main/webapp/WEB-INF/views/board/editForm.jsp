@@ -41,6 +41,7 @@
 					<div id="board-editform">
 						
 						<form class="form-box" action="${pageContext.request.contextPath}/board/edit" method="get">
+							<input type="hidden" name="no" value="${boardVO.no}"/>
 							<!-- 작성자 -->
 							<div class="info-row">
 								<span class="info-title">작성자</span>
