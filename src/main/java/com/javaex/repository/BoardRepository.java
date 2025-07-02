@@ -81,13 +81,20 @@ public class BoardRepository {
 		return count;
 	}
 	
-	//게시판 글 보기
+	//게시판 글 보기, 수정폼
 	public BoardVO boardSelectOne(int no) {
 		System.out.println("BoardRepository.boardSelectOne");
 		
 		BoardVO boardVO = sqlSession.selectOne("board.selectBoardContent", no);
 		
 		return boardVO;
+	}
+	
+	//게시판 글 수정
+	public int boardUpdate() {
+		System.out.println("BoardRepository.boardUpdate");
+		
+		return 0;
 	}
 
 

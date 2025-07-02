@@ -252,13 +252,20 @@ public class BoardService {
 		return count;
 	}
 	
-	//게시판 글 보기
+	//게시판 글 보기, 수정폼
 	public BoardVO exeRead(int no) {
 		System.out.println("BoardService.exeRead()");
 		
 		BoardVO boardVO = boardRepository.boardSelectOne(no);
 		
 		return boardVO;
+	}
+	
+	//게시판 글 수정
+	public int exeEdit() {
+		System.out.println("BoardService.exeEdit()");
+		
+		return 0;
 	}
 	
 

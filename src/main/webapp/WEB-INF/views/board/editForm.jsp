@@ -40,45 +40,38 @@
 	
 					<div id="board-editform">
 						
-						<form class="form-box" action="#" method="get">
+						<form class="form-box" action="${pageContext.request.contextPath}/board/edit" method="get">
 							<!-- 작성자 -->
 							<div class="info-row">
 								<span class="info-title">작성자</span>
-								<span>정우성</span>
+								<span>${boardVO.userName}</span>
 							</div>
 							
 							<!-- 조회수 -->
 							<div class="info-row">
 								<span class="info-title">조회수</span>
-								<span>123</span>
+								<span>${boardVO.hit}</span>
 							</div>
 							
 							<!-- 작성일 -->
 							<div class="info-row">
 								<span class="info-title">작성일</span>
-								<span>2020-03-02</span>
+								<span>${boardVO.regDate}</span>
 							</div>
 							
 							<!-- 제목 -->
 							<div class="info-row">
 								<label class="info-title" for="txt-title">제&nbsp;&nbsp;&nbsp;목</label>
-								<input type="text" id="txt-title" name="" value="">
+								<input type="text" id="txt-title" name="title" value="${boardVO.title}">
 							</div>
 						
 							<!-- 내용 -->
 							<div class="info-row">
-								<textarea id="txt-content">여기에는 본문내용이 출력됩니다.
-	여기에는 본문내용이 출력됩니다.
-	여기에는 본문내용이 출력됩니다.
-	여기에는 본문내용이 출력됩니다.
-	여기에는 본문내용이 출력됩니다.
-	여기에는 본문내용이 출력됩니다.
-	여기에는 본문내용이 출력됩니다.
-	여기에는 본문내용이 출력됩니다. </textarea>
+								<textarea id="txt-content">${boardVO.content}</textarea>
 							</div>
 							
                             <div class="btn-box">
-                                <a class="btn btn-gray btn-md" href="${pageContext.request.contextPath}/board/list2">목록</a>
+                                <a class="btn btn-gray btn-md" href="${pageContext.request.contextPath}/board/list3">목록</a>
 							    <button class="btn btn-blue btn-md" type="submit" >수정</button>
                             </div>
 							

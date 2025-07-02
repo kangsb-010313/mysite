@@ -93,10 +93,11 @@
 		]]>
 	</insert>
 	
-	<!-- 게시판 보기 -->
-	<select id="selectBoardContent" parameterType="int" resultType="com.javaex.vo.BoardVO">
+	<!-- 게시판 보기, 수정폼 -->
+	<select id="selectBoardContent" parameterType="com.javaex.vo.BoardVO" resultType="com.javaex.vo.BoardVO">
 		<![CDATA[
-			select  u.name userName
+			select  b.no
+					,u.name userName
 					,b.hit
 			        ,date_format(b.reg_date, "%Y-%m-%d")regDate
 			        ,b.title
@@ -107,8 +108,15 @@
 		]]>
 	</select>
 
-
-
+	<!-- 게시판 글 수정 -->
+	<update id="">
+		<![CDATA[
+			update board
+			set title= #{title}
+				,content= #{content}
+			where no = ?
+		]]>
+	</update>
 
 
 
