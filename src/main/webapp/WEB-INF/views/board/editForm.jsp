@@ -78,7 +78,7 @@
 							</div>
 							
                             <div class="btn-box">
-                                <a class="btn btn-gray btn-md" href="">목록</a>
+                                <a class="btn btn-gray btn-md" href="${pageContext.request.contextPath}/board/list2">목록</a>
 							    <button class="btn btn-blue btn-md" type="submit" >수정</button>
                             </div>
 							
