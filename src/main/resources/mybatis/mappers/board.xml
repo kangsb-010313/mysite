@@ -57,7 +57,7 @@
 		</if>
 			
 		<![CDATA[
-			order by b.no asc
+			order by b.no desc
 			limit #{startRowNo}, #{listCnt}
 		]]>
 	</select>
@@ -94,10 +94,12 @@
 	</insert>
 	
 	<!-- 게시판 보기, 수정폼 -->
+	<!-- userNo 처음에 안 가져와서 버튼 숨기기 기능 때 욕 봤다.. 가져올 땐 일단 그냥 다 가져오자.. -->
 	<select id="selectBoardContent" parameterType="com.javaex.vo.BoardVO" resultType="com.javaex.vo.BoardVO">
 		<![CDATA[
 			select  b.no
 					,u.name userName
+					,b.user_no userNo
 					,b.hit
 			        ,date_format(b.reg_date, "%Y-%m-%d")regDate
 			        ,b.title
@@ -114,10 +116,19 @@
 			update board
 			set title= #{title}
 				,content= #{content}
-			where no = #{no}
+			where user_no = #{userNo}
+			and no = #{no}
 		]]>
 	</update>
 
+	<!-- 게시판 글 삭제 -->
+	<delete id="delete" parameterType="com.javaex.vo.BoardVO">
+		<![CDATA[
+			delete from board
+			where user_no = #{userNo}
+			and no = #{no}
+		]]>
+	</delete>
 
 
 

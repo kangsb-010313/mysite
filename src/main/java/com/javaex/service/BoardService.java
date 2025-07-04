@@ -270,5 +270,14 @@ public class BoardService {
 		return count;
 	}
 	
+	//게시판 글 삭제
+	public int exeRemove(BoardVO boardVO) {
+		System.out.println("BoardService.exeRemove");
+		
+		int count = boardRepository.boardDelete(boardVO);
+		
+		return count;
+	}
+	
 
 }

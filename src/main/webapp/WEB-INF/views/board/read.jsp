@@ -73,7 +73,11 @@
 						
 						<div class="btn-box">
 							<a class="btn btn-gray btn-md" href="${pageContext.request.contextPath}/board/list3">목록</a>
-							<a class="btn btn-blue btn-md" href="${pageContext.request.contextPath}/board/editform?no=${boardVO.no}">수정</a>
+							
+							<c:if test="${boardVO.userNo eq sessionScope.authUser.no}">
+								<a class="btn btn-blue btn-md" href="${pageContext.request.contextPath}/board/editform?no=${requestScope.boardVO.no}">수정</a>
+							</c:if>
+							
 						</div>
 						
 					</div>

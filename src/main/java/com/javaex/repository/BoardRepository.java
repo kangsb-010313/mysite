@@ -98,6 +98,15 @@ public class BoardRepository {
 		
 		return count;
 	}
+	
+	//게시판 글 삭제
+	public int boardDelete(BoardVO boardVO) {
+		System.out.println("BoardRepository.boardDelete");
+		
+		int count = sqlSession.delete("board.delete", boardVO);
+		
+		return count;
+	}
 
 
 }

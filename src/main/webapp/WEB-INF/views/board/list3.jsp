@@ -75,7 +75,11 @@
 										<td>${boardVO.regDate}</td>
 										
 										<td>
-	                                        <button class="btn btn-white btn-sm" type="button">삭제</button>
+											<c:if test="${boardVO.userNo == sessionScope.authUser.no}">
+	                                        	<button class="btn btn-white btn-sm" type="button">
+	                                       			<a href="${pageContext.request.contextPath}/board/remove?no=${boardVO.no}">삭제</a>
+	                                        	</button>
+	                                        </c:if>
 	                                    </td>
 									</tr>
 								</c:forEach>

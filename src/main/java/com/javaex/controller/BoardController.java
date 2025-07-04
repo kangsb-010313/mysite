@@ -147,8 +147,14 @@ public class BoardController {
 	
 	//-- 수정
 	@RequestMapping(value="/edit", method= {RequestMethod.GET, RequestMethod.POST})
-	public String edit(@ModelAttribute BoardVO boardVO) {
+	public String edit(@ModelAttribute BoardVO boardVO, HttpSession session) {
 		System.out.println("BoardController.edit()");
+		
+		UserVO authUser = (UserVO)session.getAttribute("authUser");
+		
+		int no = authUser.getNo();
+		
+		boardVO.setUserNo(no);
 		
 		boardService.exeEdit(boardVO);
 		
@@ -158,10 +164,18 @@ public class BoardController {
 
 	//-- 삭제
 	@RequestMapping(value="/remove", method= {RequestMethod.GET, RequestMethod.POST})
-	public String remove() {
+	public String remove(@ModelAttribute BoardVO boardVO, HttpSession session) {
 		System.out.println("BoardController.remove()");
 		
-		return "";
+		UserVO authUser = (UserVO)session.getAttribute("authUser");
+		
+		int num = authUser.getNo();
+		
+		boardVO.setUserNo(num);
+		
+		boardService.exeRemove(boardVO);
+		
+		return "redirect:/board/list3";
 	}
 
 }
