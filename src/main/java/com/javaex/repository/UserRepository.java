@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.javaex.vo.UserVO;
 
+
 @Repository
 public class UserRepository {
 	
@@ -58,5 +59,16 @@ public class UserRepository {
 		
 		return count;
 	}
+	
+	//-- 아이디 사용 유무 체크(회원가입)
+	public UserVO userSelectById(String id) {
+		System.out.println("UserRepository.userSelectById()");
+		
+		UserVO userVO = sqlSession.selectOne("user.selectOneById", id);
+		
+		return userVO;
+	}
+	
+	
 
 }

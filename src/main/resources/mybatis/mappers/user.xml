@@ -11,7 +11,7 @@
 		]]>
 	</insert>
 
-	<!-- 로그인 -->
+	<!-- 로그인/user 정보 가져오기(세션용) -->
 	<select id="selectOneByIdPw" parameterType="com.javaex.vo.UserVO" resultType= "com.javaex.vo.UserVO">
 		<![CDATA[
 			select  no
@@ -45,5 +45,18 @@
 			where no = #{no}
 		]]>
 	</update>
+	
+	
+	<!-- 아이디 사용 유무 체크(회원가입) -->
+	<select id="selectOneById" parameterType="string" resultType="com.javaex.vo.UserVO" >
+		<![CDATA[
+			select  no
+					,id
+			        ,name
+			        ,gender
+			from users
+			where id = #{id}
+		]]>
+	</select>
 
 </mapper>
