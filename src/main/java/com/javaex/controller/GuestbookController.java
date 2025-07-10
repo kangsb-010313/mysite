@@ -13,6 +13,7 @@ import com.javaex.service.GuestbookService;
 import com.javaex.vo.GuestbookVO;
 
 @Controller
+@RequestMapping(value="/guestbook")
 public class GuestbookController {
 	
 	//필드
@@ -21,7 +22,7 @@ public class GuestbookController {
 
 	//메소드 일반
 	//-- 방명록 전체 리스트 가져오기
-	@RequestMapping(value="/guestbook/list", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/list", method= {RequestMethod.GET, RequestMethod.POST})
 	public String list(Model model) {
 		System.out.println("GuestbookController.list()");
 		
@@ -33,7 +34,7 @@ public class GuestbookController {
 	}
 	
 	//-- 방명록 글 저장
-	@RequestMapping(value="/guestbook/add", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/add", method= {RequestMethod.GET, RequestMethod.POST})
 	public String add(@ModelAttribute GuestbookVO guestbookVO) {
 		System.out.println("GuestbookController.add()");
 		
@@ -43,7 +44,7 @@ public class GuestbookController {
 	}
 	
 	//-- 삭제 폼
-	@RequestMapping(value="/guestbook/removeform", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/removeform", method= {RequestMethod.GET, RequestMethod.POST})
 	public String removeForm() {
 		System.out.println("GuestbookController.removeForm()");
 		
@@ -51,7 +52,7 @@ public class GuestbookController {
 	}
 	
 	//-- 삭제
-	@RequestMapping(value="/guestbook/remove", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/remove", method= {RequestMethod.GET, RequestMethod.POST})
 	public String remove(@ModelAttribute GuestbookVO guestbookVO) {
 		System.out.println("GuestbookController.remove()");
 		
@@ -59,16 +60,6 @@ public class GuestbookController {
 		
 		return "redirect:/guestbook/list";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 
 	
