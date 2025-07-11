@@ -63,7 +63,7 @@
 											<label for="txt-password">패스워드</label>
 										</th>
 										<td>
-											<input id="txt-password"type="password" name="password" value="">
+											<input id="txt-password" type="password" name="password" value="">
 										</td>
 									</tr>
 									<tr>
@@ -108,12 +108,12 @@
     	<div class="modal-content">
     		<p>비밀번호를 입력해 주세요.</p>
     		
-    		<form action="" method="">
+    		<form id="modalForm" action="" method="">
 	    		<div>
-	    			<input type="password" name="" value="">
+	    			<input type="password" name="password" value="">
 	    			<input type="text" name="no" value="">
 	    		</div>
-	    		<button type="submit" class="btn=del btn btn-blue btn-md">삭제</button>
+	    		<button type="submit" class="btn-del btn btn-blue btn-md">삭제</button>
 	    		<button class="btn-close btn btn-gray btn-md">닫기</button>
     		</form>
     		
@@ -132,7 +132,7 @@
     $(document).ready(function(){
     	console.log('돔트리완료');
     	
-    	fetchList(); //리스트데이터 요청해서 그리는 함수
+    	fetchList(); //리스트데이터 요청해서 화면에 리스트 그리는 함수
     	
     	/*
     	//버튼 클릭할 때
@@ -206,8 +206,11 @@
     		let no = $this.data('no');
     		console.log(no);
     		
-    		$('input[name="no"]').val(no);
+    		//번호 추가
+    		$('#modalForm [name="no"]').val(no);
     		
+    		//패스워드는 비운다
+    		$('#modalForm [name="password"]').val('');
     		
     	});
     	
@@ -221,7 +224,52 @@
     	});
     	
     	/* 모달창의 삭제 버튼을 클릭했을 때(진짜 삭제) */
-		$('.btn-del').on('click', function(){
+		$('#modalForm').on('submit', function(event){
+			console.log('진짜 삭제 클릭');
+			event.preventDefault();
+			
+			//데이터 수집
+			let pw = $('#modalForm input[name="password"]').val();
+			let no = $('#modalForm input[name="no"]').val();
+			
+			let guestbookVO = {
+					no: no,
+					password: pw
+			}
+			
+			console.log(guestbookVO);
+			
+			//전송
+			$.ajax({
+				
+				url : '${pageContext.request.contextPath }/api/guestbook/remove',		
+				type : 'post',
+				//contentType : 'application/json',
+				data : guestbookVO,
+
+				dataType : 'json',
+				success : function(result){
+					/*성공시 처리해야될 코드 작성*/
+					console.log(result);
+					
+					if(result == 1){
+						//리스트에서 선택한거 화면에서 지우기	
+						$('#t'+no).remove(); //아이디를 매칭시킨다
+					}
+					
+					//모달창 닫기
+					$('.modal-bg').removeClass('active');
+
+					
+				},
+				error : function(XHR, status, error) {
+					console.error(status + ' : ' + error);
+				}
+			});
+
+			
+			
+			
 			
 		});
     	
@@ -264,7 +312,7 @@
     	console.log(guestbookVO);
     	
     	let str = '';
-    	str += '<table class="guestbook-item">';
+    	str += '<table id="t'+guestbookVO.no+'" class="guestbook-item">';
     	str += '	<colgroup>';
     	str += '		<col style="width: 10%;">';
     	str += '		<col style="width: 40%;">';
