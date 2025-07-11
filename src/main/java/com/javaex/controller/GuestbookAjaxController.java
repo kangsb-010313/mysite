@@ -11,7 +11,7 @@ public class GuestbookAjaxController {
 	//ajax용 메인화면
 	@RequestMapping(value="/ajaxguestbook", method= {RequestMethod.GET, RequestMethod.POST})
 	public String ajaxindex() {
-		System.out.println("GuestbookController.ajaxindex()");
+		System.out.println("GuestbookAjaxController.ajaxindex()");
 		
 		return "ajaxguestbook/index";
 	}

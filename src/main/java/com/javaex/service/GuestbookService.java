@@ -41,5 +41,19 @@ public class GuestbookService {
 		
 		return count;
 	}
+	
+	//--방명록 저장하기 key 조회(ajax)
+	public GuestbookVO exeAddKey(GuestbookVO guestbookVO) {
+		System.out.println("GuestbookService.exeAddKey");
+		
+		int count = guestbookRepository.guestbookInsertKey(guestbookVO); //저장키값 가져오기
+		
+		//추가된 방명록 글 가져오기
+		GuestbookVO gVO = guestbookRepository.guestbookSelectOne(guestbookVO.getNo());
+		
+		return gVO;
+	}
+	
+	
 
 }
