@@ -23,18 +23,14 @@
 			<!-- 헤더 ---------------------------------------------->
 		
             <div class="content2 clearfix">
-                <aside>
-                    <h2>방명록</h2>
-                    <ul>
-                        <li><a href="">일반방명록</a></li>
-                        <li><a href="">ajax방명록</a></li>
-                    </ul>
-                </aside>
+				<!-- 방명록aside ---------------------------------------------->
+				<c:import url="/WEB-INF/views/include/asideGuestbook.jsp"></c:import>
+				<!-- 방명록aside ---------------------------------------------->
 
 				<main>
 					
 				    <div class="main-head clearfix">
-                        <h3>일반방명록</h3>
+                        <h3>ajax방명록</h3>
                         <ol class="clearfix">
                             <li>홈</li>
                             <li>방명록</li>
@@ -114,7 +110,7 @@
 	    			<input type="text" name="no" value="">
 	    		</div>
 	    		<button type="submit" class="btn-del btn btn-blue btn-md">삭제</button>
-	    		<button class="btn-close btn btn-gray btn-md">닫기</button>
+	    		<button type="button" class="btn-close btn btn-gray btn-md">닫기</button>
     		</form>
     		
     	</div>
@@ -167,7 +163,8 @@
     		//서버에 저장 요청
     		$.ajax({
     			
-    			url : '${pageContext.request.contextPath }/api/guestbook/add',		
+    			//url : '${pageContext.request.contextPath }/api/guestbook/add',	
+    			url : '${pageContext.request.contextPath }/api/guestbooks',		
     			type : 'post',
     			//contentType : 'application/json',
     			data : guestbookVO,
@@ -233,7 +230,6 @@
 			let no = $('#modalForm input[name="no"]').val();
 			
 			let guestbookVO = {
-					no: no,
 					password: pw
 			}
 			
@@ -242,8 +238,9 @@
 			//전송
 			$.ajax({
 				
-				url : '${pageContext.request.contextPath }/api/guestbook/remove',		
-				type : 'post',
+				//url : '${pageContext.request.contextPath }/api/guestbook/remove',	
+				url : '${pageContext.request.contextPath}/api/guestbooks/'+no,	
+				type : 'delete',
 				//contentType : 'application/json',
 				data : guestbookVO,
 
@@ -283,8 +280,11 @@
 		$.ajax({
 			
 			//보내는거
-			url : "${pageContext.request.contextPath}/api/guestbook/list",		
-			type : "post",
+			url : "${pageContext.request.contextPath}/api/guestbooks",
+			type : "get",
+			//밑에 url, type은 남의 것 쓸 때
+			//url : "https://raw.githubusercontent.com/clz2025-red/api/refs/heads/main/guestbook",
+			//type : "get",
 			//contentType : "application/json",
 			//data : {name: "홍길동"}, 
 
