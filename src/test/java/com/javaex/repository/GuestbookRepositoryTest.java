@@ -28,5 +28,27 @@ public class GuestbookRepositoryTest {
 		//assertThat(guestbookList).isEqualTo('1');
 		
 	}
+	
+	@Test
+	public void delete() {
+		GuestbookVO guestbookVO = new GuestbookVO();
+		guestbookVO.setNo(68);
+		guestbookVO.setPassword("123");
+		System.out.println(guestbookVO);
+		
+		int count = guestbookRepository.guestbookDelete(guestbookVO);
+		
+		assertThat(count).isEqualTo(0);
+		
+	}
+	
+	@Test
+	public void insert() {
+		GuestbookVO guestbookVO = new GuestbookVO("강수빈", "123", "하이");
+		
+		int count = guestbookRepository.guestbookInsert(guestbookVO);
+		
+		assertThat(count).isEqualTo(1);
+	}
 
 }
