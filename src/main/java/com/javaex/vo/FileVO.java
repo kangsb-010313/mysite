@@ -4,21 +4,21 @@ public class FileVO {
 	
 	//필드
 	private String orgName;
-	private String exname;
-	private String savename;
+	private String exName;
+	private String saveName;
 	private String filePath;
-	private Long filesize;
+	private Long fileSize;
 	
 	
 	//생성자
 	public FileVO() {
 	}
-	public FileVO(String orgName, String exname, String savename, String filePath, Long filesize) {
+	public FileVO(String orgName, String exName, String saveName, String filePath, Long fileSize) {
 		this.orgName = orgName;
-		this.exname = exname;
-		this.savename = savename;
+		this.exName = exName;
+		this.saveName = saveName;
 		this.filePath = filePath;
-		this.filesize = filesize;
+		this.fileSize = fileSize;
 	}
 	
 	
@@ -29,17 +29,17 @@ public class FileVO {
 	public void setOrgName(String orgName) {
 		this.orgName = orgName;
 	}
-	public String getExname() {
-		return exname;
+	public String getExName() {
+		return exName;
 	}
-	public void setExname(String exname) {
-		this.exname = exname;
+	public void setExName(String exName) {
+		this.exName = exName;
 	}
-	public String getSavename() {
-		return savename;
+	public String getSaveName() {
+		return saveName;
 	}
-	public void setSavename(String savename) {
-		this.savename = savename;
+	public void setSaveName(String saveName) {
+		this.saveName = saveName;
 	}
 	public String getFilePath() {
 		return filePath;
@@ -47,21 +47,23 @@ public class FileVO {
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
 	}
-	public Long getFilesize() {
-		return filesize;
+	public Long getFileSize() {
+		return fileSize;
 	}
-	public void setFilesize(Long filesize) {
-		this.filesize = filesize;
+	public void setFileSize(Long fileSize) {
+		this.fileSize = fileSize;
 	}
-
 	
 	
-	//메소드일반
+	//메소드 일반
 	@Override
 	public String toString() {
-		return "FileVO [orgName=" + orgName + ", exname=" + exname + ", savename=" + savename + ", filePath=" + filePath
-				+ ", filesize=" + filesize + "]";
+		return "FileVO [orgName=" + orgName + ", exName=" + exName + ", saveName=" + saveName + ", filePath=" + filePath
+				+ ", fileSize=" + fileSize + "]";
 	}
+	
+	
+
 	
 	
 
