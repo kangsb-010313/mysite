@@ -7,9 +7,14 @@
 <head>
 <meta charset="UTF-8">
 <title>MySite</title>
+
+<!-- css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/reset.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/mysite.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/gallery.css">
+<!-- js -->
+<script src="${pageContext.request.contextPath}/assets/js/jquery/jquery-3.7.1.js"></script>
+
 </head>
 
 <body>
@@ -35,61 +40,23 @@
 
 				<div id="gallery-list">
 					<div class="btn-box">
-						<button class="btn btn-blue btn-md" type="submit">이미지올리기</button>
+						<button id="btnUpload" class="btn btn-blue btn-md" type="submit">이미지올리기</button>
 					</div>
 
 					<ul class="clearfix">
 
-						<!-- 이미지반복영역 -->
-						<li>
-							<div class="card">
-								<img src="../../assets/images/Gangho-dong.jpg">
-								<div class="writer">
-									작성자: <strong>유재석</strong>
+						<c:forEach items="${requestScope.gaList}" var="galleryVO">
+							<!-- 이미지반복영역 -->
+							<li>
+								<div class="card">
+									<img src="${pageContext.request.contextPath}/upload/${requestScope.saveName}">
+									<div class="writer">
+										작성자: <strong>유재석</strong>
+									</div>
 								</div>
-							</div>
-						</li>
-						<li>
-							<div class="card">
-								<img src="../../assets/images/Gangho-dong.jpg">
-								<div class="writer">
-									작성자: <strong>유재석</strong>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="card">
-								<img src="../../assets/images/Gangho-dong.jpg">
-								<div class="writer">
-									작성자: <strong>유재석</strong>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="card">
-								<img src="../../assets/images/Gangho-dong.jpg">
-								<div class="writer">
-									작성자: <strong>유재석</strong>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="card">
-								<img src="../../assets/images/Gangho-dong.jpg">
-								<div class="writer">
-									작성자: <strong>유재석</strong>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="card">
-								<img src="../../assets/images/Gangho-dong.jpg">
-								<div class="writer">
-									작성자: <strong>유재석</strong>
-								</div>
-							</div>
-						</li>
-						<!-- 이미지반복영역 -->
+							</li>
+							<!-- 이미지반복영역 -->
+						</c:forEach>
 
 					</ul>
 				</div>
@@ -119,7 +86,8 @@
 
 			<p class="title">이미지등록 모달창</p>
 
-			<form id="imgupload-form" action="" method="">
+
+			<form id="imgupload-form" action="${pageContext.request.contextPath}/gallery/upload" method="post" enctype="multipart/form-data">
 				<div class="info-row">
 					<label for="txt-content">글작성</label> <input id="txt-content" type="text" name="content" value="">
 				</div>
@@ -166,6 +134,31 @@
 		</div>
 
 	</div>
+
+
+<!-- --------------------------------------------------------- -->
+<script>
+$(document).ready(function(){
+	
+	console.log('돔트리완료');
+	
+	$('#btnUpload').on('click', function(){
+		console.log('이미지올리기 클릭');
+		
+		
+		
+	});
+	
+	
+	
+	
+	
+});
+
+
+
+</script>
+
 
 
 </body>
