@@ -21,9 +21,9 @@ public class AttachService {
 	//메소드 일반
 	
 	//-- 
-	public void exeUpload(MultipartFile file) {
+	public String exeUpload(MultipartFile file) {
 		System.out.println("AttachService.exeUpload()");
-		
+		//-- 윈도우 경로 --> C:\\javaStudy\\upload\\
 		String saveDir = "C:\\javaStudy\\upload\\";
 		
 		//(1)파일정보를 추출 저장(DB) 
@@ -55,6 +55,7 @@ public class AttachService {
 		//과제(주황색)
 		
 		
+		
 		//(2)실물 파일을 하드디스크에 저장
 		try {
 			byte[] fileData = file.getBytes();
@@ -71,6 +72,8 @@ public class AttachService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		return saveName;
 		
 		
 		

@@ -2,6 +2,7 @@ package com.javaex.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,12 +31,13 @@ public class AttachController {
 	
 	//--업로드 (보내준 파일을 받아서 저장)
 	@RequestMapping(value="/attach/upload", method= {RequestMethod.GET, RequestMethod.POST})
-	public String upload(@RequestParam(value="file") MultipartFile file) {
+	public String upload(@RequestParam(value="file") MultipartFile file, Model model) {
 		System.out.println("AttachController.upload()");
 		
-		attachService.exeUpload(file);
+		String saveName =  attachService.exeUpload(file);
+		model.addAttribute("saveName", saveName);
 		
-		return "";
+		return "attach/result";
 	}
 	
 	//--업로드 결과

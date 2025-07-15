@@ -38,7 +38,7 @@
 					<div id="attach-result">
 						<div class="result-box">
 							<div class="result-image">
-								<img src="">
+								<img src="${pageContext.request.contextPath}/upload/${requestScope.saveName}">
 							</div>
 							
 							<a class="btn btn-gray btn-md" href=""> 다시 업로드 하기 </a>
