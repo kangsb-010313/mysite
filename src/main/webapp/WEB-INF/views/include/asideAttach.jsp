@@ -4,7 +4,7 @@
 <aside>
     <h2>갤러리</h2>
     <ul>
-        <li><a href="">일반갤러리</a></li>
-        <li><a href="">첨부파일연습</a></li>
+        <li><a href="${pageContext.request.contextPath}/gallery">일반갤러리</a></li>
+        <li><a href="${pageContext.request.contextPath}/attach/form">첨부파일연습</a></li>
     </ul>
 </aside>
