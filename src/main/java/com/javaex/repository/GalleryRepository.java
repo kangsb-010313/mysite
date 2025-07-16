@@ -27,4 +27,14 @@ public class GalleryRepository {
 	}
 	
 	
+	//갤러리 업로드 등록(저장)
+	public int galleryInsert(GalleryVO galleryVO) {
+		System.out.println("GalleryRepository.galleryInsert()");
+		
+		int count = sqlSession.insert("gallery.insert", galleryVO);
+		
+		return count;
+	}
+	
+	
 }

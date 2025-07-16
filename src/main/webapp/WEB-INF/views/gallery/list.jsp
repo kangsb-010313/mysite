@@ -49,9 +49,9 @@
 							<!-- 이미지반복영역 -->
 							<li>
 								<div class="card">
-									<img src="${pageContext.request.contextPath}/upload/${requestScope.saveName}">
+									<img src="${pageContext.request.contextPath}/upload/${galleryVO.saveName}">
 									<div class="writer">
-										작성자: <strong>유재석</strong>
+										작성자: <strong>${galleryVO.userName}</strong>
 									</div>
 								</div>
 							</li>
@@ -117,7 +117,7 @@
 			<p class="title">이미지보기 모달창</p>
 
 			<div id="img-view">
-				<img src="../../assets/images/Gangho-dong.jpg">>
+				<img src="${pageContext.request.contextPath}/upload/${galleryVO.saveName}">>
 
 
 				<div class="img-content">
@@ -142,14 +142,40 @@ $(document).ready(function(){
 	
 	console.log('돔트리완료');
 	
+	//이미지업로드 모달창 열기
 	$('#btnUpload').on('click', function(){
 		console.log('이미지올리기 클릭');
 		
+		$('#modal-upload').addClass('active');
 		
 		
 	});
 	
+	//이미지업로드 모달창 닫기
+	$('#modal-upload .btn-close').on('click', function(){
+		console.log('이미지업로드 닫기');
+		
+		$('#modal-upload').removeClass('active');
+	});
 	
+	//이미지보기 모달창 열기
+	$('#gallery-list .clearfix').on('click', function(){
+		
+		console.log('이미지보기');
+		
+		$('#modal-view').addClass('active');
+		
+	});
+	
+	
+	//이미지보기 모달창 닫기
+ 	$('#modal-view .btn-close').on('click', function(){
+		
+		console.log('이미지보기 모달창 닫기');
+		
+		$('#modal-view').removeClass('active');
+		
+	}); 
 	
 	
 	

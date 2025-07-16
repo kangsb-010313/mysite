@@ -7,9 +7,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.javaex.service.AttachService;
 import com.javaex.service.GalleryService;
 import com.javaex.vo.GalleryVO;
+import com.javaex.vo.UserVO;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class GalleryController {
@@ -17,6 +23,8 @@ public class GalleryController {
 	//필드
 	@Autowired
 	private GalleryService galleryService;
+	@Autowired
+	private AttachService attachService;
 
 	
 	//메소드 일반
@@ -34,10 +42,31 @@ public class GalleryController {
 	
 	//갤러리 업로드 등록(저장)
 	@RequestMapping(value="/gallery/upload", method= {RequestMethod.GET, RequestMethod.POST})
-	public String upload() {
+	public String upload(@RequestParam(value="file") MultipartFile file, 
+						 GalleryVO galleryVO, 
+						 Model model,
+						 HttpSession session) {
+		
 		System.out.println("GalleryController.upload()");
 		
-		return "";
+	    UserVO authUser = (UserVO) session.getAttribute("authUser");
+	    
+	    if (authUser == null) {
+	        
+	        return "redirect:/user/loginform";
+	    }
+		
+		String saveName = attachService.exeUpload(file);
+		
+		galleryVO.setSaveName(saveName);
+		//galleryVO.setUserName(authUser.getName());
+		galleryVO.setUserNo(authUser.getNo());
+		
+		galleryService.exeGalleryUpload(galleryVO);
+		
+		model.addAttribute("saveName", saveName);
+		
+		return "redirect:/gallery"; //redirect
 	}
 	
 	

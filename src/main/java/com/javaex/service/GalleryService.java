@@ -25,5 +25,14 @@ public class GalleryService {
 		
 		return gaList;
 	}
+	
+	//갤러리 업로드 등록(저장)
+	public int exeGalleryUpload(GalleryVO galleryVO) {
+		System.out.println("GalleryService.exeGalleryUpload()");
+		
+		int count = galleryRepository.galleryInsert(galleryVO);
+		
+		return count;
+	}
 
 }
