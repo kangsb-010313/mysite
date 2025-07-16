@@ -49,8 +49,11 @@
 
 						<c:forEach items="${requestScope.gaList}" var="galleryVO">
 							<!-- 이미지반복영역 -->
-							<li>
-								<div class="card">
+							<li id="t${galleryVO.no}">
+								<div class="card modal-open" data-img="${pageContext.request.contextPath}/upload/${galleryVO.saveName}"
+												 			 data-content="${galleryVO.content}"
+												 			 data-no="${galleryVO.no}">
+												  
 									<img src="${pageContext.request.contextPath}/upload/${galleryVO.saveName}">
 									<div class="writer">
 										작성자: <strong>${galleryVO.userName}</strong>
@@ -119,17 +122,15 @@
 			<p class="title">이미지보기 모달창</p>
 
 			<div id="img-view">
-				<img src="${pageContext.request.contextPath}/upload/${galleryVO.saveName}">
+				<img id="modal-img" src="">
 
+				<div id="modal-content" class="img-content"></div>
 
-				<div class="img-content">
-					${galleryVO.content}
-				</div>
-
+				
 				<div class="btn-box">
 					<button type="submit" class="btn-del btn btn-blue btn-md">삭제</button>
+					<input type="hidden" name="no" value="">
 				</div>
-
 			</div>
 
 
@@ -162,9 +163,19 @@ $(document).ready(function(){
 	
 	
 	//이미지보기 모달창 열기
-	$('#gallery-list .clearfix').on('click', function(){
+	$('.modal-open').on('click', function(){
 		
 		console.log('이미지보기');
+		
+		let $this = $(this);
+		
+		let modalImg = $this.data('img');
+		let moContent = $this.data('content');
+		let galleryNo = $this.data('no');
+		
+		$('#modal-img').attr('src', modalImg);
+		$('#modal-content').text(moContent);
+		$('#modal-view input[name=no]').val(galleryNo);
 		
 		$('#modal-view').addClass('active');
 		
@@ -179,6 +190,44 @@ $(document).ready(function(){
 		
 	}); 
 	
+	
+	//이미지보기 -> 삭제버튼
+	$('#modal-view .btn-del').on('click', function(event){
+		console.log('삭제버튼');
+		event.preventDefault();
+		
+		let no = $('#modal-view input[name=no]').val();
+		
+		let galleryVO = {
+				no: no
+		}
+		
+		$.ajax({
+			
+			url : '${pageContext.request.contextPath}/gallery/delete/'+no,		
+			type : 'post',
+			//contentType : 'application/json',
+			data : galleryVO,
+
+			dataType : 'json',
+			success : function(result){
+			    /*성공시 처리해야될 코드 작성*/
+			    console.log(result);
+			    
+			    if(result == 1){
+			    	$('#t'+no).remove();
+			    	$('#modal-view').removeClass('active');
+			    }else{
+			    	$('#modal-view').removeClass('active');
+			    }
+			},
+			error : function(XHR, status, error) {
+				console.error(status + ' : ' + error);
+			}
+		});
+
+		
+	});
 	
 	
 });

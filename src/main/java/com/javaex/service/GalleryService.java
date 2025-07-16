@@ -37,11 +37,12 @@ public class GalleryService {
 
 	
 	//갤러리 삭제
-	public void exeGalleryRemove() {
+	public int exeGalleryRemove(GalleryVO galleryVO) {
 		System.out.println("GalleryService.exeGalleryRemove()");
 		
-		galleryRepository.galleryDelete();
+		int count = galleryRepository.galleryDelete(galleryVO);
 		
+		return count;
 	}
 	
 	

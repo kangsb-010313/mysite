@@ -5,9 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.service.AttachService;
@@ -77,13 +80,25 @@ public class GalleryController {
 	
 
 	//갤러리 삭제
-	@RequestMapping(value="/gallery/delete", method= {RequestMethod.GET, RequestMethod.POST})
-	public String delete() {
+	@ResponseBody
+	@RequestMapping(value="/gallery/delete/{no}", method= RequestMethod.POST)
+	public int delete(@ModelAttribute GalleryVO galleryVO,
+						 @PathVariable(value="no") int no,
+						 HttpSession session) {
+		
 		System.out.println("GalleryController.delete()");
 		
-		galleryService.exeGalleryRemove();
+	    UserVO authUser = (UserVO) session.getAttribute("authUser");
+	    if (authUser == null) {
+	        return 0;
+	    }
 		
-		return "";
+		galleryVO.setNo(no);
+		galleryVO.setUserNo(authUser.getNo());
+		
+		int count = galleryService.exeGalleryRemove(galleryVO);
+		
+		return count;
 	}
 	
 	

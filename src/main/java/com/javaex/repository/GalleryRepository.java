@@ -38,10 +38,12 @@ public class GalleryRepository {
 	
 	
 	//갤러리 삭제
-	public void galleryDelete() {
+	public int galleryDelete(GalleryVO galleryVO) {
 		System.out.println("GalleryRepository.galleryDelete()");
 		
-		sqlSession.delete("gallery.delete");
+		int count = sqlSession.delete("gallery.delete", galleryVO);
+		
+		return count;
 	}
 	
 	
