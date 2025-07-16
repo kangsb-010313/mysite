@@ -37,4 +37,13 @@ public class GalleryRepository {
 	}
 	
 	
+	//갤러리 삭제
+	public void galleryDelete() {
+		System.out.println("GalleryRepository.galleryDelete()");
+		
+		sqlSession.delete("gallery.delete");
+	}
+	
+	
+	
 }

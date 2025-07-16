@@ -28,4 +28,13 @@
 		]]>
 	</insert>
 	
+	<!-- 갤러리 삭제 -->
+	<delete id="delete" parameterType="com.javaex.vo.GalleryVO">
+		<![CDATA[
+			delete from gallery
+			where no = #{no}
+			and user_no = #{userNo}
+		]]>
+	</delete>
+	
 </mapper>

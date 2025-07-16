@@ -35,4 +35,15 @@ public class GalleryService {
 		return count;
 	}
 
+	
+	//갤러리 삭제
+	public void exeGalleryRemove() {
+		System.out.println("GalleryService.exeGalleryRemove()");
+		
+		galleryRepository.galleryDelete();
+		
+	}
+	
+	
+	
 }

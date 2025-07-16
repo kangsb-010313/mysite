@@ -51,15 +51,21 @@ public class GalleryController {
 		
 	    UserVO authUser = (UserVO) session.getAttribute("authUser");
 	    
-	    if (authUser == null) {
-	        
-	        return "redirect:/user/loginform";
-	    }
+//	    if (authUser == null) {
+//	        
+//	        return "redirect:/user/loginform";
+//	    }
 		
+	    //db저장되게 --> FileVO로 가져올 수 있나?
 		String saveName = attachService.exeUpload(file);
+		String filePath = "C:\\javaStudy\\upload\\";
+		String orgName = file.getOriginalFilename();
+		long fileSize = file.getSize();
 		
 		galleryVO.setSaveName(saveName);
-		//galleryVO.setUserName(authUser.getName());
+		galleryVO.setFilePath(filePath);
+		galleryVO.setOrgName(orgName);
+		galleryVO.setFileSize(fileSize);
 		galleryVO.setUserNo(authUser.getNo());
 		
 		galleryService.exeGalleryUpload(galleryVO);
@@ -69,14 +75,13 @@ public class GalleryController {
 		return "redirect:/gallery"; //redirect
 	}
 	
-	
-	//갤러리 조회(이미지 보기)
-	
-	
+
 	//갤러리 삭제
 	@RequestMapping(value="/gallery/delete", method= {RequestMethod.GET, RequestMethod.POST})
 	public String delete() {
 		System.out.println("GalleryController.delete()");
+		
+		galleryService.exeGalleryRemove();
 		
 		return "";
 	}

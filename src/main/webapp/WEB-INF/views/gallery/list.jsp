@@ -39,9 +39,11 @@
 				</div>
 
 				<div id="gallery-list">
+					<c:if test="${not empty sessionScope.authUser}">
 					<div class="btn-box">
 						<button id="btnUpload" class="btn btn-blue btn-md" type="submit">이미지올리기</button>
 					</div>
+					</c:if>
 
 					<ul class="clearfix">
 
@@ -117,11 +119,11 @@
 			<p class="title">이미지보기 모달창</p>
 
 			<div id="img-view">
-				<img src="${pageContext.request.contextPath}/upload/${galleryVO.saveName}">>
+				<img src="${pageContext.request.contextPath}/upload/${galleryVO.saveName}">
 
 
 				<div class="img-content">
-					여기는 입력한 코멘트가 나옵니다.
+					${galleryVO.content}
 				</div>
 
 				<div class="btn-box">
@@ -158,6 +160,7 @@ $(document).ready(function(){
 		$('#modal-upload').removeClass('active');
 	});
 	
+	
 	//이미지보기 모달창 열기
 	$('#gallery-list .clearfix').on('click', function(){
 		
@@ -166,7 +169,6 @@ $(document).ready(function(){
 		$('#modal-view').addClass('active');
 		
 	});
-	
 	
 	//이미지보기 모달창 닫기
  	$('#modal-view .btn-close').on('click', function(){
