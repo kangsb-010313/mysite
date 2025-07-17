@@ -52,7 +52,8 @@
 							<li id="t${galleryVO.no}">
 								<div class="card modal-open" data-img="${pageContext.request.contextPath}/upload/${galleryVO.saveName}"
 												 			 data-content="${galleryVO.content}"
-												 			 data-no="${galleryVO.no}">
+												 			 data-no="${galleryVO.no}"
+												 			 data-user-no="${galleryVO.userNo}">
 												  
 									<img src="${pageContext.request.contextPath}/upload/${galleryVO.saveName}">
 									<div class="writer">
@@ -126,7 +127,6 @@
 
 				<div id="modal-content" class="img-content"></div>
 
-				
 				<div class="btn-box">
 					<button type="submit" class="btn-del btn btn-blue btn-md">삭제</button>
 					<input type="hidden" name="no" value="">
@@ -141,6 +141,7 @@
 
 <!-- --------------------------------------------------------- -->
 <script>
+
 $(document).ready(function(){
 	
 	console.log('돔트리완료');
@@ -169,10 +170,21 @@ $(document).ready(function(){
 		
 		let $this = $(this);
 		
-		let modalImg = $this.data('img');
+		let modalImg = $this.data('img'); 
 		let moContent = $this.data('content');
 		let galleryNo = $this.data('no');
+		let guserNo = $this.data('userNo');
 		
+		//로그인한 사용자가 본인이 작성한 갤러리에만 삭제버튼 보이게
+		let loginUserNo = "${sessionScope.authUser.no}";
+		
+		if(loginUserNo != null && loginUserNo == guserNo){ //int인데 null로 해도 되나?
+			 $('#modal-view .btn-del').show(); //요소(삭제버튼) 보이게
+		}else{
+			 $('#modal-view .btn-del').hide(); //요소(삭제버튼) 숨김 
+		}
+		
+		//이미지 보기 모달창에 사진, 작성글 보이게
 		$('#modal-img').attr('src', modalImg);
 		$('#modal-content').text(moContent);
 		$('#modal-view input[name=no]').val(galleryNo);
