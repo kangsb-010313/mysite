@@ -42,7 +42,7 @@ public class GalleryController {
 		return "gallery/list";
 	}
 	
-	/*
+	
 	//갤러리 업로드 등록(저장)
 	@RequestMapping(value="/gallery/upload", method= {RequestMethod.GET, RequestMethod.POST})
 	public String upload(@RequestParam(value="file") MultipartFile file, 
@@ -100,7 +100,7 @@ public class GalleryController {
 		
 		return count;
 	}
-	*/
+	
 	
 	
 	
