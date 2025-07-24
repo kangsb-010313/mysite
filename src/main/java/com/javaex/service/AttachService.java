@@ -8,11 +8,17 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
+import com.javaex.controller.UserController;
 import com.javaex.vo.FileVO;
 
 @Service
 public class AttachService {
+
+    private final UserController userController;
+
+    AttachService(UserController userController) {
+        this.userController = userController;
+    }
 	
 	//필드
 	
@@ -24,13 +30,25 @@ public class AttachService {
 	public String exeUpload(MultipartFile file) {
 		System.out.println("AttachService.exeUpload()");
 		
-		//--파일 저장 경로 
 		// 윈도우 경로	--> C:\\javaStudy\\upload\\
 		// 맥 경로	--> /Users/kangsubin/Desktop/javaStudy/upload/
 		//String saveDir = "C:\\javaStudy\\upload\\";
 		//String saveDir = "/Users/kangsubin/Desktop/javaStudy/upload/";
 		
-		String saveDir = "/data/upload/";
+		//현재 os명
+		String osName = System.getProperty("os.name").toLowerCase();
+		
+		//--파일 저장 경로 
+		String saveDir = "";
+		
+		if(osName.contains("win")) {//만약에 윈도우면
+			System.out.println("지금 os 윈도우");
+			saveDir = "C:\\javaStudy\\upload\\";
+		}else {
+			//나머지(리눅스)면
+			saveDir = "/data/upload/";			
+		}
+
 		
 		//(1)파일정보를 추출 저장(DB) 
 		//오리지널 파일명
